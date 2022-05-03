@@ -1,0 +1,61 @@
+@use './variables' as *;
+@mixin font($font_name, $file_name, $weight, $style) {
+  @font-face {
+    font-family: $font_name;
+    font-display: swap;
+    src: url('../../assets/fonts/#{$file_name}.woff') format('woff'),
+      url('../../assets/fonts/#{$file_name}.woff2') format('woff2');
+    font-weight: #{$weight};
+    font-style: #{$style};
+  }
+}
+
+// AFTER THAT WE CAN CREATE SINGLE FONT FAMILY
+@mixin Roboto-Bold {
+  font: {
+    family: 'Roboto';
+    style: normal;
+    weight: 700;
+  }
+}
+@mixin Roboto-medium {
+  font: {
+    family: 'Roboto';
+    style: normal;
+    weight: 500;
+  }
+}
+@mixin Roboto-regular {
+  font: {
+    family: 'Roboto';
+    style: normal;
+    weight: 400;
+  }
+}
+@mixin Roboto-light {
+  font: {
+    family: 'Roboto';
+    style: normal;
+    weight: 300;
+  }
+}
+@mixin Robot-light-italic {
+  font: {
+    family: 'Roboto';
+    style: italic;
+    weight: 300;
+  }
+}
+
+// mobile-first breakpoint mixin
+@mixin breakpoint($breakpoint: md, $key: min, $orientation: false) {
+  @if ($orientation) {
+    @media (#{$key}-width: map-get($breakpoints, $breakpoint)) and (orientation : $orientation) {
+      @content;
+    }
+  } @else {
+    @media (#{$key}-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}

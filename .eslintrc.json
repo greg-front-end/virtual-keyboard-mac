@@ -12,6 +12,7 @@
         "sourceType": "module"
     },
     "rules": {
+        "import/extensions": "off"
     },
     "ignorePatterns": [
         "**/*.html"

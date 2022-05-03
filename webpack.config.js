@@ -157,6 +157,13 @@ module.exports = {
         }
       },
       {
+        test: /\.mp4$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: `./assets/video/${filename('[ext]')}`
+        }
+      },
+      {
         test: /\.(woff(2)?|eot|ttf|otf)$/i,
         type: 'asset/resource',
         generator: {

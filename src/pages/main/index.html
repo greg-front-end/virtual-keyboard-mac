@@ -9,7 +9,43 @@
 </head>
 
 <body>
+  <main class="main">
+    <section class="room">
+      <div class="room__bg">
+        <button class="room__bg-mute"></button>
+        <video class="room__video" autoplay muted loop id="room-video">
+          <source src="../../assets/video/keyboard-bg.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="container">
+        <!-- <div class="room__text">
+          <h1 class="room title title">RSS virtual keyboard</h1>
+          <textarea class="room__textarea" id="textarea"></textarea>
+        </div> -->
+        <div class="room__table">
+          <div class="room__screen">
+            <textarea class="room__textarea" id="textarea"></textarea>
+          </div>
+          <div class="room__keyboard keyboard" id="keyboard">
+            <div class="keyboard__row">
 
+            </div>
+            <div class="keyboard__row"></div>
+            <div class="keyboard__row"></div>
+            <div class="keyboard__row"></div>
+            <div class="keyboard__row"></div>
+          </div>
+          <p class="room__description">
+            The keyboard created for <span>macOS</span>
+          </p>
+          <p class="room__language">
+            For change language press <span class="main__lange--fn">fn</span> or <span class="main__lange--fn">
+              control + space</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
 
 </html>
