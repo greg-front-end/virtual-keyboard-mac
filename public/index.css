@@ -664,6 +664,14 @@ body {
 .capslock {
   width: 140px;
 }
+.capslock span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: hsl(0deg, 0%, 52%);
+  background-color: var(--grey-light);
+  margin-right: 90px;
+}
 
 .backslash {
   position: relative;

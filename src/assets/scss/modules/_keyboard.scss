@@ -107,6 +107,13 @@
 }
 .capslock {
   width: 140px;
+  span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--grey-light);
+    margin-right: 90px;
+  }
 }
 .backslash {
   position: relative;
