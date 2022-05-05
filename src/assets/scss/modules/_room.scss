@@ -1,28 +1,34 @@
 @use '../2-helpers/' as *;
 .room {
+  position: relative;
+  min-height: 100vh;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(31, 53, 53);
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    top: 520px;
+    left: 0;
+    width: 100%;  
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 20px 8px rgba(255, 255, 255, 0.9);
+  }
   &__bg {
     position: fixed;
-    top: -30%;
+    bottom: calc(100vh - 30%);
+    @include breakpoint(lg, min) {
+      bottom: calc(100vh - 54%);
+    }
     left: 0;
     right: 0;
   }
   &__video {
     width: 100%;
     object-fit: cover;
-  }
-  &__textarea {
-    max-width: 100%;
-    width: 1200px;
-    height: 250px;
-    transition: $transition;
-    background-color: #fafafa;
-    border-radius: $border-r;
-    border-color: var(--grey-dark);
-    padding: 2rem;
-    font-size: 18px;
-    margin-bottom: 1rem;
-  }
-  &__keyboard {
-    margin-bottom: 2rem;
   }
 }

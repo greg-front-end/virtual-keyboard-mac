@@ -45,6 +45,7 @@ textarea {
   resize: none;
 }
 span {
+  transition: $transition;
   @include Roboto-medium;
   font-size: 20px;
 }
