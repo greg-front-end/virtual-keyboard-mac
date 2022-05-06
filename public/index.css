@@ -663,10 +663,14 @@ body {
 
 .capslock {
   width: 140px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 .capslock span {
-  width: 5px;
-  height: 5px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background-color: hsl(0deg, 0%, 52%);
   background-color: var(--grey-light);
@@ -809,9 +813,19 @@ body {
           transform: rotate(90deg);
 }
 
+.arrow-down {
+  bottom: 10px;
+  position: absolute;
+  right: 84px;
+}
 .arrow-down img {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
+}
+
+.arrow-up {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
 }
 
 .language,
@@ -897,6 +911,8 @@ body {
   right: 80px;
   top: 60px;
   background-color: transparent;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 .room__video {
   width: 100%;

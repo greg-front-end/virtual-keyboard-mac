@@ -107,9 +107,11 @@
 }
 .capslock {
   width: 140px;
+  transition: $transition;
   span {
-    width: 5px;
-    height: 5px;
+    transition: $transition;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background-color: var(--grey-light);
     margin-right: 90px;
@@ -230,9 +232,15 @@
   }
 }
 .arrow-down {
+  bottom: 10px;
+  position: absolute;
+  right: 84px;
   img {
     transform: rotate(180deg);
   }
+}
+.arrow-up {
+  align-self: flex-start;
 }
 .language,
 .space,

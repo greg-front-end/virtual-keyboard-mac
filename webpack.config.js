@@ -5,8 +5,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require('copy-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
-// const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
 const filename = (ext) => isDev ? `[name]${ext}` : `[name].[contenthash]${ext}`;
@@ -55,16 +53,8 @@ const options = {
 const plugins = [
   ...getHtmlTemplate(),
   new MiniCssExtractPlugin({
-    filename: `${filename('.css')}`,  // prepend folder name
-    // chunkFilename: '[name].[id].css',    // prepend folder name
+    filename: `${filename('.css')}`
   }),
-  // new BrowserSyncPlugin({
-  //   // browse to http://localhost:3000/ during development,
-  //   // ./public directory is being served
-  //   host: 'localhost',
-  //   port: 3000,
-  //   server: { baseDir: ['public'] }
-  // })
   new CopyPlugin({
     patterns: [{ from: 'src/assets/data', to: 'assets/data' }]
   }),
@@ -98,18 +88,10 @@ if (isProd) {
 }
 
 if (process.env.NODE_ENV === "production") {
-  // mode = "production";
-  // Temporary workaround for 'browserslist' bug that is being patched in the near future
   target = "browserslist";
 }
 
-if (process.env.SERVE) {
-  // We only want React Hot Reloading in serve mode
-  // plugins.push(new ReactRefreshWebpackPlugin());
-}
-
 module.exports = {
-  // mode defaults to 'production' if not set
   mode: 'development',
   entry: getEntry(),
   output: {
@@ -174,7 +156,6 @@ module.exports = {
         test: /\.m?jsx?$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          // without additional settings, this will reference .babelrc
           loader: "babel-loader",
           options: {
 
