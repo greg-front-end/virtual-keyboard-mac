@@ -27,14 +27,17 @@ class Room extends Keyboard {
     this.section.classList.add('room');
     this.roomBg.classList.add('room__bg');
     this.roomBgVideo.classList.add('room__video');
-    this.roomBgVideo.autoplay = true;
-    this.roomBgVideo.loop = true;
-    this.roomBgVideo.muted = false;
     this.roomBgVideo.id = ('room__video');
+    this.roomBgVideo.type = 'video/mp4';
+    this.roomBgVideo.autoplay = true;
+    this.roomBgVideo.playsInline = true;
+    this.roomBgVideo.loop = true;
+    this.roomBgVideo.muted = true;
     this.roomBgVideoSource.src = roomBgVideoFile;
+    this.roomBgVideoSource.type = 'video/mp4';
     this.muteBtn.classList.add('room__bg-mute');
     this.muteBtnImg.classList.add('room__video-btn');
-    this.muteBtnImg.src = roomBgVolumeIcon;
+    this.muteBtnImg.src = roomBgMuteIcon;
     this.muteBtnImg.alt = 'Mute';
     this.container.classList.add('container');
     this.roomDesk.classList.add('room__desk');
@@ -75,12 +78,12 @@ class Room extends Keyboard {
   };
 
   roomBgVideoMute = () => {
-    if (!this.roomBgVideo.muted) {
-      this.roomBgVideo.muted = true;
-      this.muteBtnImg.src = roomBgMuteIcon;
-    } else {
+    if (this.roomBgVideo.muted) {
       this.roomBgVideo.muted = false;
       this.muteBtnImg.src = roomBgVolumeIcon;
+    } else {
+      this.roomBgVideo.muted = true;
+      this.muteBtnImg.src = roomBgMuteIcon;
     }
   };
 }
