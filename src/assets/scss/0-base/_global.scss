@@ -23,7 +23,6 @@ ul {
 }
 a{
   text-decoration: none;
-  // color: var(--para-font);
 }
 img, video {
   max-width: 100%;
@@ -32,8 +31,6 @@ img, video {
 button, input {
   border: none;
   transition: $transition;
-  // font-family: var(--body-font);
-  // font-size: var(--normal-font-size);
 }
 button {
   cursor: pointer;

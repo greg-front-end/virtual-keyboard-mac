@@ -22,9 +22,7 @@ class Keys {
     this.textArea.classList.add('room__textarea');
     this.textArea.id = ('textarea');
     this.textArea.placeholder = 'RSS virtual keyboard\n\nThe keyboard created for macOS.\n\nFor change language press option + space. \n\nControl, commands values are emoji';
-    this.renderTextArea = () => {
-      return this.textArea;
-    };
+    this.renderTextArea = () => this.textArea;
   }
 
   renderKey = (keys) => {
@@ -166,7 +164,7 @@ class Keys {
       case 'ArrowUp':
         this.span.innerHTML = '&#8593;';
         break;
-      case 'ArrowLeft':
+      case 'ArrowRight':
         this.span.innerHTML = '&#8594;';
         break;
       case 'ArrowDown':
@@ -190,6 +188,8 @@ class Keys {
           click(e);
         });
         break;
+      default:
+        console.log('test');
     }
   };
 
@@ -255,7 +255,6 @@ class Keys {
   };
 
   printTextArea = () => {
-    console.log('here should be textarea')
     this.textArea.innerHTML += this.span.textContent;
   };
 }

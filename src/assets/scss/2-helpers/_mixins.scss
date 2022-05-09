@@ -9,8 +9,6 @@
     font-style: #{$style};
   }
 }
-
-// AFTER THAT WE CAN CREATE SINGLE FONT FAMILY
 @mixin Roboto-Bold {
   font: {
     family: 'Roboto';
