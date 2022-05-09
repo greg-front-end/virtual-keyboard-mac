@@ -19,7 +19,6 @@ class Room extends Keyboard {
     this.roomDesk = document.createElement('div');
     this.roomMonitor = document.createElement('div');
     this.roomMonitorImg = document.createElement('img');
-    this.roomMonitorTextArea = document.createElement('textarea');
     this.roomDeskCactus = document.createElement('div');
     this.roomDeskCactusImg = document.createElement('img');
 
@@ -45,9 +44,6 @@ class Room extends Keyboard {
     this.roomMonitorImg.classList.add('room__screen-img');
     this.roomMonitorImg.src = roomMonitorImage;
     this.roomMonitorImg.alt = 'Monitor';
-    this.roomMonitorTextArea.classList.add('room__textarea');
-    this.roomMonitorTextArea.id = ('textarea');
-    this.roomMonitorTextArea.placeholder = 'RSS virtual keyboard\n\nThe keyboard created for macOS.\n\nFor change language press control + space';
     this.roomDeskCactus.classList.add('room__cactus');
     this.roomDeskCactusImg.classList.add('room__cactus-img');
     this.roomDeskCactusImg.src = roomDeskCactusImage;
@@ -71,10 +67,9 @@ class Room extends Keyboard {
     this.container.append(this.roomDesk);
     this.roomDesk.append(this.roomMonitor);
     this.roomMonitor.append(this.roomMonitorImg);
-    this.roomMonitor.append(this.roomMonitorTextArea);
+    this.roomMonitor.append(this.area.renderTextArea());
     this.roomDesk.append(this.roomDeskCactus);
     this.roomDeskCactus.append(this.roomDeskCactusImg);
-    this.roomMonitorTextArea.focus();
   };
 
   roomBgVideoMute = () => {

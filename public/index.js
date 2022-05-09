@@ -44,21 +44,704 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator.js */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _icons_backspace_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../icons/backspace.svg */ "./src/assets/icons/backspace.svg");
-/* harmony import */ var _icons_tab_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../icons/tab.svg */ "./src/assets/icons/tab.svg");
-/* harmony import */ var _icons_capslock_svg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../icons/capslock.svg */ "./src/assets/icons/capslock.svg");
-/* harmony import */ var _icons_enter_svg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../icons/enter.svg */ "./src/assets/icons/enter.svg");
-/* harmony import */ var _icons_shift_svg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../icons/shift.svg */ "./src/assets/icons/shift.svg");
-/* harmony import */ var _icons_lang_svg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../icons/lang.svg */ "./src/assets/icons/lang.svg");
-/* harmony import */ var _icons_control_svg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../icons/control.svg */ "./src/assets/icons/control.svg");
-/* harmony import */ var _icons_option_svg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../icons/option.svg */ "./src/assets/icons/option.svg");
-/* harmony import */ var _icons_command_svg__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../icons/command.svg */ "./src/assets/icons/command.svg");
-/* harmony import */ var _icons_arrows_svg__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../icons/arrows.svg */ "./src/assets/icons/arrows.svg");
+/* harmony import */ var _Keys__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Keys */ "./src/assets/js/components/Keys.js");
 
 
 
 
 
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var Keyboard = /*#__PURE__*/_createClass(function Keyboard() {
+  var _this = this;
+
+  _classCallCheck(this, Keyboard);
+
+  _defineProperty(this, "renderKeyboard", function () {
+    _this.keys.forEach(function (element) {
+      var button = new _Keys__WEBPACK_IMPORTED_MODULE_4__["default"]();
+
+      _this.keyboard.append(button.renderKey(element));
+    });
+  });
+
+  this.keyboard = document.createElement('div');
+  this.keyboard.classList.add('room__keyboard', 'keyboard');
+  this.area = new _Keys__WEBPACK_IMPORTED_MODULE_4__["default"]();
+  this.keys = [{
+    en: {
+      low: '§',
+      high: '±'
+    },
+    ru: {
+      low: '>',
+      high: '<'
+    },
+    id: 'Backquote'
+  }, {
+    en: {
+      low: '1',
+      high: '!'
+    },
+    ru: {
+      low: '1',
+      high: '!'
+    },
+    id: 'Digit1'
+  }, {
+    en: {
+      low: '2',
+      high: '@'
+    },
+    ru: {
+      low: '2',
+      high: '"'
+    },
+    id: 'Digit2'
+  }, {
+    en: {
+      low: '3',
+      high: '#'
+    },
+    ru: {
+      low: '3',
+      high: '№'
+    },
+    id: 'Digit3'
+  }, {
+    en: {
+      low: '4',
+      high: '$'
+    },
+    ru: {
+      low: '4',
+      high: ';'
+    },
+    id: 'Digit4'
+  }, {
+    en: {
+      low: '5',
+      high: '%'
+    },
+    ru: {
+      low: '5',
+      high: '%'
+    },
+    id: 'Digit5'
+  }, {
+    en: {
+      low: '6',
+      high: '^'
+    },
+    ru: {
+      low: '6',
+      high: ':'
+    },
+    id: 'Digit6'
+  }, {
+    en: {
+      low: '7',
+      high: '&'
+    },
+    ru: {
+      low: '7',
+      high: '?'
+    },
+    id: 'Digit7'
+  }, {
+    en: {
+      low: '8',
+      high: '*'
+    },
+    ru: {
+      low: '8',
+      high: '*'
+    },
+    id: 'Digit8'
+  }, {
+    en: {
+      low: '9',
+      high: '('
+    },
+    ru: {
+      low: '9',
+      high: '('
+    },
+    id: 'Digit9'
+  }, {
+    en: {
+      low: '0',
+      high: ')'
+    },
+    ru: {
+      low: '0',
+      high: ')'
+    },
+    id: 'Digit0'
+  }, {
+    en: {
+      low: '-',
+      high: '_'
+    },
+    ru: {
+      low: '-',
+      high: '_'
+    },
+    id: 'Minus'
+  }, {
+    en: {
+      low: '=',
+      high: '+'
+    },
+    ru: {
+      low: '=',
+      high: '+'
+    },
+    id: 'Equal'
+  }, {
+    en: {
+      low: 'backspace',
+      high: 'backspace'
+    },
+    ru: {
+      low: 'backspace',
+      high: 'backspace'
+    },
+    id: 'Backspace'
+  }, {
+    en: {
+      low: 'keyboard_tab',
+      high: 'keyboard_tab'
+    },
+    ru: {
+      low: 'keyboard_tab',
+      high: 'keyboard_tab'
+    },
+    id: 'Tab'
+  }, {
+    en: {
+      low: 'q',
+      high: 'Q'
+    },
+    ru: {
+      low: 'й',
+      high: 'Й'
+    },
+    id: 'KeyQ'
+  }, {
+    en: {
+      low: 'w',
+      high: 'W'
+    },
+    ru: {
+      low: 'ц',
+      high: 'Ц'
+    },
+    id: 'KeyW'
+  }, {
+    en: {
+      low: 'e',
+      high: 'E'
+    },
+    ru: {
+      low: 'у',
+      high: 'У'
+    },
+    id: 'KeyE'
+  }, {
+    en: {
+      low: 'r',
+      high: 'R'
+    },
+    ru: {
+      low: 'к',
+      high: 'К'
+    },
+    id: 'KeyR'
+  }, {
+    en: {
+      low: 't',
+      high: 'T'
+    },
+    ru: {
+      low: 'е',
+      high: 'Е'
+    },
+    id: 'KeyT'
+  }, {
+    en: {
+      low: 'y',
+      high: 'Y'
+    },
+    ru: {
+      low: 'н',
+      high: 'Н'
+    },
+    id: 'KeyY'
+  }, {
+    en: {
+      low: 'u',
+      high: 'U'
+    },
+    ru: {
+      low: 'г',
+      high: 'Г'
+    },
+    id: 'KeyU'
+  }, {
+    en: {
+      low: 'i',
+      high: 'I'
+    },
+    ru: {
+      low: 'ш',
+      high: 'Ш'
+    },
+    id: 'KeyI'
+  }, {
+    en: {
+      low: 'o',
+      high: 'O'
+    },
+    ru: {
+      low: 'щ',
+      high: 'Щ'
+    },
+    id: 'KeyO'
+  }, {
+    en: {
+      low: 'p',
+      high: 'P'
+    },
+    ru: {
+      low: 'з',
+      high: 'З'
+    },
+    id: 'KeyP'
+  }, {
+    en: {
+      low: '[',
+      high: '{'
+    },
+    ru: {
+      low: 'х',
+      high: 'Х'
+    },
+    id: 'BracketLeft'
+  }, {
+    en: {
+      low: ']',
+      high: '}'
+    },
+    ru: {
+      low: 'ъ',
+      high: 'Ъ'
+    },
+    id: 'BracketRight'
+  }, {
+    en: {
+      low: '',
+      high: ''
+    },
+    ru: {
+      low: '',
+      high: ''
+    },
+    id: 'CapsLock'
+  }, {
+    en: {
+      low: 'a',
+      high: 'A'
+    },
+    ru: {
+      low: 'ф',
+      high: 'Ф'
+    },
+    id: 'KeyA'
+  }, {
+    en: {
+      low: 's',
+      high: 'S'
+    },
+    ru: {
+      low: 'ы',
+      high: 'Ы'
+    },
+    id: 'KeyS'
+  }, {
+    en: {
+      low: 'd',
+      high: 'D'
+    },
+    ru: {
+      low: 'в',
+      high: 'В'
+    },
+    id: 'KeyD'
+  }, {
+    en: {
+      low: 'f',
+      high: 'F'
+    },
+    ru: {
+      low: 'а',
+      high: 'А'
+    },
+    id: 'KeyF'
+  }, {
+    en: {
+      low: 'g',
+      high: 'G'
+    },
+    ru: {
+      low: 'п',
+      high: 'П'
+    },
+    id: 'KeyG'
+  }, {
+    en: {
+      low: 'h',
+      high: 'H'
+    },
+    ru: {
+      low: 'р',
+      high: 'Р'
+    },
+    id: 'KeyH'
+  }, {
+    en: {
+      low: 'j',
+      high: 'J'
+    },
+    ru: {
+      low: 'о',
+      high: 'О'
+    },
+    id: 'KeyJ'
+  }, {
+    en: {
+      low: 'k',
+      high: 'K'
+    },
+    ru: {
+      low: 'л',
+      high: 'Л'
+    },
+    id: 'KeyK'
+  }, {
+    en: {
+      low: 'l',
+      high: 'L'
+    },
+    ru: {
+      low: 'д',
+      high: 'Д'
+    },
+    id: 'KeyL'
+  }, {
+    en: {
+      low: ';',
+      high: ':'
+    },
+    ru: {
+      low: 'ж',
+      high: 'Ж'
+    },
+    id: 'Semicolon'
+  }, {
+    en: {
+      low: "'",
+      high: '"'
+    },
+    ru: {
+      low: 'э',
+      high: 'Э'
+    },
+    id: 'Quote'
+  }, {
+    en: {
+      low: '\\',
+      high: '|'
+    },
+    ru: {
+      low: 'ё',
+      high: 'Ё'
+    },
+    id: 'Backslash'
+  }, {
+    en: {
+      low: 'keyboard_return',
+      high: 'keyboard_return'
+    },
+    ru: {
+      low: 'keyboard_return',
+      high: 'keyboard_return'
+    },
+    id: 'Enter'
+  }, {
+    en: {
+      low: 'Shift',
+      high: 'Shift'
+    },
+    ru: {
+      low: 'Shift',
+      high: 'Shift'
+    },
+    id: 'ShiftLeft'
+  }, {
+    en: {
+      low: '`',
+      high: '~'
+    },
+    ru: {
+      low: ']',
+      high: '['
+    },
+    id: 'IntlBackslash'
+  }, {
+    en: {
+      low: 'z',
+      high: 'Z'
+    },
+    ru: {
+      low: 'я',
+      high: 'Я'
+    },
+    id: 'KeyZ'
+  }, {
+    en: {
+      low: 'x',
+      high: 'X'
+    },
+    ru: {
+      low: 'ч',
+      high: 'Ч'
+    },
+    id: 'KeyX'
+  }, {
+    en: {
+      low: 'c',
+      high: 'C'
+    },
+    ru: {
+      low: 'с',
+      high: 'С'
+    },
+    id: 'KeyC'
+  }, {
+    en: {
+      low: 'v',
+      high: 'V'
+    },
+    ru: {
+      low: 'м',
+      high: 'М'
+    },
+    id: 'KeyV'
+  }, {
+    en: {
+      low: 'b',
+      high: 'B'
+    },
+    ru: {
+      low: 'и',
+      high: 'И'
+    },
+    id: 'KeyB'
+  }, {
+    en: {
+      low: 'n',
+      high: 'N'
+    },
+    ru: {
+      low: 'т',
+      high: 'Т'
+    },
+    id: 'KeyN'
+  }, {
+    en: {
+      low: 'm',
+      high: 'M'
+    },
+    ru: {
+      low: 'ь',
+      high: 'Ь'
+    },
+    id: 'KeyM'
+  }, {
+    en: {
+      low: ',',
+      high: '<'
+    },
+    ru: {
+      low: 'б',
+      high: 'Б'
+    },
+    id: 'Comma'
+  }, {
+    en: {
+      low: '.',
+      high: '>'
+    },
+    ru: {
+      low: 'ю',
+      high: 'Ю'
+    },
+    id: 'Period'
+  }, {
+    en: {
+      low: '/',
+      high: '?'
+    },
+    ru: {
+      low: '.',
+      high: ','
+    },
+    id: 'Slash'
+  }, {
+    en: {
+      low: 'Shift',
+      high: 'Shift'
+    },
+    ru: {
+      low: 'Shift',
+      high: 'Shift'
+    },
+    id: 'ShiftRight'
+  }, {
+    en: {
+      low: 'control',
+      high: 'control'
+    },
+    ru: {
+      low: 'control',
+      high: 'control'
+    },
+    id: 'ControlLeft'
+  }, {
+    en: {
+      low: 'option',
+      high: 'option'
+    },
+    ru: {
+      low: 'option',
+      high: 'option'
+    },
+    id: 'AltLeft'
+  }, {
+    en: {
+      low: 'command',
+      high: 'command'
+    },
+    ru: {
+      low: 'command',
+      high: 'command'
+    },
+    id: 'MetaLeft'
+  }, {
+    en: {
+      low: 'space_bar',
+      high: 'space_bar'
+    },
+    ru: {
+      low: 'space_bar',
+      high: 'space_bar'
+    },
+    id: 'Space'
+  }, {
+    en: {
+      low: 'command',
+      high: 'command'
+    },
+    ru: {
+      low: 'command',
+      high: 'command'
+    },
+    id: 'MetaRight'
+  }, {
+    en: {
+      low: 'option',
+      high: 'option'
+    },
+    ru: {
+      low: 'option',
+      high: 'option'
+    },
+    id: 'AltRight'
+  }, {
+    en: {
+      low: '&#8592;',
+      high: '&#8592;'
+    },
+    ru: {
+      low: '&#8592;',
+      high: '&#8592;'
+    },
+    id: 'ArrowLeft'
+  }, {
+    en: {
+      low: '&#8593;',
+      high: '&#8593;'
+    },
+    ru: {
+      low: '&#8593;',
+      high: '&#8593;'
+    },
+    id: 'ArrowUp'
+  }, {
+    en: {
+      low: '&#8595;',
+      high: '&#8595;'
+    },
+    ru: {
+      low: '&#8595;',
+      high: '&#8595;'
+    },
+    id: 'ArrowDown'
+  }, {
+    en: {
+      low: '&#8594;',
+      high: '&#8594;'
+    },
+    ru: {
+      low: '&#8594;',
+      high: '&#8594;'
+    },
+    id: 'ArrowRight'
+  }];
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Keyboard);
+
+/***/ }),
+
+/***/ "./src/assets/js/components/Keys.js":
+/*!******************************************!*\
+  !*** ./src/assets/js/components/Keys.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _icons_backspace_svg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../icons/backspace.svg */ "./src/assets/icons/backspace.svg");
+/* harmony import */ var _icons_tab_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../icons/tab.svg */ "./src/assets/icons/tab.svg");
+/* harmony import */ var _icons_capslock_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../icons/capslock.svg */ "./src/assets/icons/capslock.svg");
+/* harmony import */ var _icons_enter_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../icons/enter.svg */ "./src/assets/icons/enter.svg");
+/* harmony import */ var _icons_shift_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../icons/shift.svg */ "./src/assets/icons/shift.svg");
+/* harmony import */ var _icons_control_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../icons/control.svg */ "./src/assets/icons/control.svg");
+/* harmony import */ var _icons_option_svg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../icons/option.svg */ "./src/assets/icons/option.svg");
+/* harmony import */ var _icons_command_svg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../icons/command.svg */ "./src/assets/icons/command.svg");
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
@@ -76,245 +759,355 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
-
-var Keyboard = /*#__PURE__*/_createClass(function Keyboard() {
+var Keys = /*#__PURE__*/_createClass(function Keys() {
   var _this = this;
 
-  _classCallCheck(this, Keyboard);
+  _classCallCheck(this, Keys);
 
-  _defineProperty(this, "renderKeyboard", function () {
-    _this.renderKeys();
+  _defineProperty(this, "renderKey", function (keys) {
+    _this.button.classList.add('keyboard__key');
+
+    switch (keys.id) {
+      case 'Backspace':
+        _this.button.append(_this.buttonImg);
+
+        _this.button.classList.add('backspace');
+
+        _this.buttonImg.src = _icons_backspace_svg__WEBPACK_IMPORTED_MODULE_0__;
+        _this.buttonImg.alt = 'backspace';
+        break;
+
+      case 'Tab':
+        _this.button.append(_this.buttonImg);
+
+        _this.button.classList.add('tab');
+
+        _this.buttonImg.src = _icons_tab_svg__WEBPACK_IMPORTED_MODULE_1__;
+        _this.buttonImg.alt = 'tab';
+        break;
+
+      case 'CapsLock':
+        _this.button.append(_this.buttonImg);
+
+        _this.button.append(_this.span);
+
+        _this.button.classList.add('capslock');
+
+        _this.buttonImg.src = _icons_capslock_svg__WEBPACK_IMPORTED_MODULE_2__;
+        _this.buttonImg.alt = 'backspace';
+        break;
+
+      case 'Backslash':
+        _this.button.classList.add('backslash');
+
+        _this.button.append(_this.span);
+
+        break;
+
+      case 'Enter':
+        _this.button.append(_this.buttonImg);
+
+        _this.button.classList.add('enter');
+
+        _this.buttonImg.src = _icons_enter_svg__WEBPACK_IMPORTED_MODULE_3__;
+        _this.buttonImg.alt = 'enter';
+        break;
+
+      case 'ShiftLeft':
+        _this.button.append(_this.buttonImg);
+
+        _this.button.classList.add('shift-left');
+
+        _this.buttonImg.src = _icons_shift_svg__WEBPACK_IMPORTED_MODULE_4__;
+        _this.buttonImg.alt = 'shift left';
+        break;
+
+      case 'ShiftRight':
+        _this.button.append(_this.buttonImg);
+
+        _this.button.classList.add('shift-right');
+
+        _this.buttonImg.src = _icons_shift_svg__WEBPACK_IMPORTED_MODULE_4__;
+        _this.buttonImg.alt = 'shift right';
+        break;
+
+      case 'ControlLeft':
+        _this.button.append(_this.buttonImg);
+
+        _this.button.append(_this.span);
+
+        _this.button.classList.add('control-left');
+
+        _this.buttonImg.src = _icons_control_svg__WEBPACK_IMPORTED_MODULE_5__;
+        _this.buttonImg.alt = 'control left';
+        break;
+
+      case 'AltLeft':
+        _this.button.append(_this.buttonImg);
+
+        _this.button.append(_this.span);
+
+        _this.button.classList.add('option-left');
+
+        _this.buttonImg.src = _icons_option_svg__WEBPACK_IMPORTED_MODULE_6__;
+        _this.buttonImg.alt = 'option left';
+        break;
+
+      case 'MetaLeft':
+        _this.button.append(_this.buttonImg);
+
+        _this.button.append(_this.span);
+
+        _this.button.classList.add('command-left');
+
+        _this.buttonImg.src = _icons_command_svg__WEBPACK_IMPORTED_MODULE_7__;
+        _this.buttonImg.alt = 'command left';
+        break;
+
+      case 'Space':
+        _this.button.classList.add('space');
+
+        break;
+
+      case 'MetaRight':
+        _this.button.append(_this.buttonImg);
+
+        _this.button.append(_this.span);
+
+        _this.button.classList.add('command-right');
+
+        _this.buttonImg.src = _icons_command_svg__WEBPACK_IMPORTED_MODULE_7__;
+        _this.buttonImg.alt = 'command right';
+        break;
+
+      case 'AltRight':
+        _this.button.append(_this.buttonImg);
+
+        _this.button.append(_this.span);
+
+        _this.button.classList.add('option-right');
+
+        _this.buttonImg.src = _icons_option_svg__WEBPACK_IMPORTED_MODULE_6__;
+        _this.buttonImg.alt = 'option right';
+        break;
+
+      case 'ArrowLeft':
+        _this.button.append(_this.span);
+
+        _this.button.classList.add('arrow-left');
+
+        break;
+
+      case 'ArrowUp':
+        _this.button.append(_this.span);
+
+        _this.button.classList.add('arrow-up');
+
+        break;
+
+      case 'ArrowDown':
+        _this.button.append(_this.span);
+
+        _this.button.classList.add('arrow-down');
+
+        break;
+
+      case 'ArrowRight':
+        _this.button.append(_this.span);
+
+        _this.button.classList.add('arrow-right');
+
+        break;
+
+      case 'KeyW':
+        _this.button.append(_this.span);
+
+        _this.button.classList.add('key-w');
+
+        break;
+
+      case 'KeyA':
+        _this.button.append(_this.span);
+
+        _this.button.classList.add('key-a');
+
+        break;
+
+      case 'KeyS':
+        _this.button.append(_this.span);
+
+        _this.button.classList.add('key-s');
+
+        break;
+
+      case 'KeyD':
+        _this.button.append(_this.span);
+
+        _this.button.classList.add('key-d');
+
+        break;
+
+      default:
+        _this.button.append(_this.span);
+
+        break;
+    }
+
+    _this.setButtonValue(keys);
+
+    _this.toggleLanguage(keys);
+
+    _this.toggleTextCase(keys);
+
+    _this.pressKey(keys.id);
+
+    return _this.button;
   });
 
-  _defineProperty(this, "renderKeys", function () {
-    var btnFragment = document.createDocumentFragment();
+  _defineProperty(this, "setButtonValue", function (id) {
+    switch (id.id) {
+      case 'Tab':
+        _this.span.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;';
+        break;
 
-    _this.keys.forEach(function (row) {
-      var keyboardRows = document.createElement('div');
-      keyboardRows.classList.add('keyboard__row');
-      row.eng.shiftUp.forEach(function (value) {
-        var keyElement = document.createElement('button');
-        var content = document.createElement('span');
-        var img = document.createElement('img');
-        var arrowUpDown = document.createElement('div');
-        keyElement.classList.add('keyboard__key');
-        keyElement.append(content);
-        arrowUpDown.classList.add('keyboard__arrow-up-down', 'arrow-up-down');
+      case 'Enter':
+        _this.span.innerHTML = '\n';
+        break;
 
-        switch (value) {
-          case 'backspace':
-            keyElement.classList.add('backspace');
-            keyElement.append(img);
-            img.src = _icons_backspace_svg__WEBPACK_IMPORTED_MODULE_4__;
-            img.alt = 'Backspace';
-            break;
+      case 'ArrowLeft':
+        _this.span.innerHTML = '&#8592;';
+        break;
 
-          case '\t':
-            keyElement.classList.add('tab');
-            keyElement.append(img);
-            img.src = _icons_tab_svg__WEBPACK_IMPORTED_MODULE_5__;
-            img.alt = 'Tab';
-            break;
+      case 'ArrowUp':
+        _this.span.innerHTML = '&#8593;';
+        break;
 
-          case 'capslock':
-            keyElement.classList.add('capslock');
-            keyElement.append(img);
-            img.src = _icons_capslock_svg__WEBPACK_IMPORTED_MODULE_6__;
-            img.alt = 'Capslock';
-            break;
+      case 'ArrowLeft':
+        _this.span.innerHTML = '&#8594;';
+        break;
 
-          case '\\':
-            keyElement.classList.add('backslash');
-            content.textContent = '\\';
-            break;
+      case 'ArrowDown':
+        _this.span.innerHTML = '&#8595;';
+        break;
 
-          case 'w':
-            keyElement.classList.add('key-w');
-            content.textContent = value;
-            break;
+      default:
+        _this.span.innerHTML = id[_this.language][_this.textCase];
+        break;
+    }
+  });
 
-          case 'a':
-            keyElement.classList.add('key-a');
-            content.textContent = value;
-            break;
+  _defineProperty(this, "clickKey", function (id) {
+    var click = function click(e) {
+      var area = document.querySelector('textarea');
+      area.innerHTML += e.target;
+    };
 
-          case 's':
-            keyElement.classList.add('key-s');
-            content.textContent = value;
-            break;
+    switch (id) {
+      case 'Tab':
+        _this.button.addEventListener('click', function (e) {
+          click(e);
+        });
 
-          case 'd':
-            keyElement.classList.add('key-d');
-            content.textContent = value;
-            break;
+        break;
+    }
+  });
 
-          case 'enter':
-            keyElement.classList.add('enter');
-            keyElement.append(img);
-            img.src = _icons_enter_svg__WEBPACK_IMPORTED_MODULE_7__;
-            img.alt = 'Enter';
-            break;
+  _defineProperty(this, "pressKey", function (id) {
+    document.addEventListener('keydown', function (e) {
+      e.preventDefault();
 
-          case 'shift-left':
-            keyElement.classList.add('shift-left');
-            keyElement.append(img);
-            img.src = _icons_shift_svg__WEBPACK_IMPORTED_MODULE_8__;
-            img.alt = 'Shift-left';
-            break;
+      if (id === e.code) {
+        _this.button.classList.add('active');
+      }
+    });
+    document.addEventListener('keyup', function (e) {
+      e.preventDefault();
 
-          case 'shift-right':
-            keyElement.classList.add('shift-right');
-            keyElement.append(img);
-            img.src = _icons_shift_svg__WEBPACK_IMPORTED_MODULE_8__;
-            img.alt = 'Shift-right';
-            break;
-
-          case 'lang':
-            keyElement.classList.add('language');
-            keyElement.append(img);
-            content.textContent = 'fn';
-            img.src = _icons_lang_svg__WEBPACK_IMPORTED_MODULE_9__;
-            img.alt = 'Language';
-            break;
-
-          case 'control-left':
-            keyElement.classList.add('control-left');
-            keyElement.prepend(img);
-            content.textContent = 'control';
-            img.src = _icons_control_svg__WEBPACK_IMPORTED_MODULE_10__;
-            img.alt = 'Control-left';
-            break;
-
-          case 'option-left':
-            keyElement.classList.add('option-left');
-            keyElement.prepend(img);
-            content.textContent = 'option';
-            img.src = _icons_option_svg__WEBPACK_IMPORTED_MODULE_11__;
-            img.alt = 'Option-left';
-            break;
-
-          case 'command-left':
-            keyElement.classList.add('command-left');
-            keyElement.prepend(img);
-            content.textContent = 'command';
-            img.src = _icons_command_svg__WEBPACK_IMPORTED_MODULE_12__;
-            img.alt = 'Command-left';
-            break;
-
-          case 'space':
-            keyElement.classList.add('space');
-            break;
-
-          case 'command-right':
-            keyElement.classList.add('command-right');
-            keyElement.prepend(img);
-            content.textContent = 'command';
-            img.src = _icons_command_svg__WEBPACK_IMPORTED_MODULE_12__;
-            img.alt = 'Command-right';
-            break;
-
-          case 'option-right':
-            keyElement.classList.add('option-right');
-            keyElement.prepend(img);
-            content.textContent = 'option';
-            img.src = _icons_option_svg__WEBPACK_IMPORTED_MODULE_11__;
-            img.alt = 'Option-right';
-            break;
-
-          case 'arrow-left':
-            keyElement.classList.add('arrow-left');
-            keyElement.append(img);
-            img.src = _icons_arrows_svg__WEBPACK_IMPORTED_MODULE_13__;
-            img.alt = 'Arrow-left';
-            break;
-
-          case 'arrow-up':
-            keyElement.classList.add('arrow-up');
-            keyElement.append(img);
-            img.src = _icons_arrows_svg__WEBPACK_IMPORTED_MODULE_13__;
-            img.alt = 'Arrow-up';
-            break;
-
-          case 'arrow-down':
-            keyElement.classList.add('arrow-down');
-            keyElement.append(img);
-            img.src = _icons_arrows_svg__WEBPACK_IMPORTED_MODULE_13__;
-            img.alt = 'Arrow-down';
-            break;
-
-          case 'arrow-right':
-            keyElement.classList.add('arrow-right');
-            keyElement.append(img);
-            img.src = _icons_arrows_svg__WEBPACK_IMPORTED_MODULE_13__;
-            img.alt = 'Arrow-right';
-            break;
-
-          default:
-            content.textContent = value;
-        }
-
-        btnFragment.append(keyElement);
-      });
-      keyboardRows.append(btnFragment);
-
-      _this.keyboard.append(keyboardRows);
+      if (id === e.code) {
+        _this.button.classList.remove('active');
+      }
     });
   });
 
-  this.capslock = false;
-  this.keyboard = document.createElement('div');
-  this.keyboard.classList.add('room__keyboard', 'keyboard');
-  this.keys = [{
-    digits: 'digits',
-    ru: {
-      shiftUp: ['>', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'backspace'],
-      shiftDown: ['<', '!', '"', '№', '%', ':', ',', '.', ';', '(', ')', '_', '+', 'backspace']
-    },
-    eng: {
-      shiftUp: ['§', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'backspace'],
-      shiftDown: ['±', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', 'backspace']
+  _defineProperty(this, "toggleTextCase", function (id) {
+    document.addEventListener('keydown', function (e) {
+      if (e.code === 'CapsLock' && !_this.isCapslock) {
+        _this.textCase = 'high';
+
+        _this.setButtonValue(id);
+
+        _this.isCapslock = true;
+      }
+
+      if ((e.code === 'ShiftLeft' || e.code === 'ShiftRight') && !_this.isShift) {
+        _this.textCase = 'high';
+
+        _this.setButtonValue(id);
+
+        _this.isShift = true;
+      }
+    });
+    document.addEventListener('keyup', function (e) {
+      if (e.code === 'CapsLock' && _this.isCapslock) {
+        _this.textCase = 'low';
+
+        _this.setButtonValue(id);
+
+        _this.isCapslock = false;
+      }
+
+      if ((e.code === 'ShiftLeft' || e.code === 'ShiftRight') && _this.isShift && !_this.isCapslock) {
+        _this.textCase = 'low';
+
+        _this.setButtonValue(id);
+
+        _this.isCapslock = false;
+        _this.isShift = false;
+      }
+    });
+  });
+
+  _defineProperty(this, "toggleLanguage", function (id) {
+    if (!_this.altLeftLang) {
+      document.addEventListener('keydown', function (e) {
+        if (e.code === 'AltLeft') {
+          _this.altLeftLang = true;
+        }
+
+        if (e.code === 'Space' && _this.altLeftLang) {
+          e.preventDefault();
+          _this.language = _this.language === 'en' ? _this.language = 'ru' : _this.language = 'en';
+          localStorage.setItem('language', _this.language);
+          _this.altLeftLang = false;
+
+          _this.setButtonValue(id);
+        }
+      });
     }
-  }, {
-    tab: 'tab',
-    ru: {
-      shiftUp: ['\t', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ'],
-      shiftDown: ['\t', 'Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Ъ']
-    },
-    eng: {
-      shiftUp: ['\t', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']'],
-      shiftDown: ['\t', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '{', '}']
-    }
-  }, {
-    caps: 'caps',
-    ru: {
-      shiftUp: ['capslock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'ё', 'enter'],
-      shiftDown: ['capslock', 'Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Э', 'Ё', 'enter']
-    },
-    eng: {
-      shiftUp: ['capslock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', '\\', 'enter'],
-      shiftDown: ['capslock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ':', '"', '|', 'enter']
-    }
-  }, {
-    shift: 'shift',
-    ru: {
-      shiftUp: ['shift-left', ']', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '?', 'shift-right'],
-      shiftDown: ['shift-left', '[', 'Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', '?', 'shift-right']
-    },
-    eng: {
-      shiftUp: ['shift-left', '`', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'shift-right'],
-      shiftDown: ['shift-left', '~', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<', '>', '?', 'shift-right']
-    }
-  }, {
-    lang: 'lang',
-    eng: {
-      shiftUp: ['lang', 'control-left', 'option-left', 'command-left', 'space', 'command-right', 'option-right', 'arrow-left', 'arrow-up', 'arrow-down', 'arrow-right'],
-      shiftDown: ['lang', 'control-left', 'option-left', 'command-left', 'space', 'command-right', 'option-right', 'arrow-left', 'arrow-up', 'arrow-down', 'arrow-right']
-    }
-  }];
+  });
+
+  this.isCapslock = false;
+  this.isShift = false;
+  this.textCase = 'low';
+  this.altLeftLang = false;
+  this.languageDoubleKeys = [];
+  this.button = document.createElement('button');
+  this.span = document.createElement('span');
+  this.buttonImg = document.createElement('img');
+  this.language = localStorage.getItem('language') || 'en';
+
+  this.renderTextArea = function () {
+    _this.textArea = document.createElement('textarea');
+
+    _this.textArea.classList.add('room__textarea');
+
+    _this.textArea.id = 'textarea';
+    _this.textArea.placeholder = 'RSS virtual keyboard\n\nThe keyboard created for macOS.\n\nFor change language press option + space. \n\nControl, commands values are emoji';
+    return _this.textArea;
+  };
 });
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Keyboard);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Keys);
 
 /***/ }),
 
@@ -432,22 +1225,20 @@ var Room = /*#__PURE__*/function (_Keyboard) {
 
       _this.roomMonitor.append(_this.roomMonitorImg);
 
-      _this.roomMonitor.append(_this.roomMonitorTextArea);
+      _this.roomMonitor.append(_this.area.renderTextArea());
 
       _this.roomDesk.append(_this.roomDeskCactus);
 
       _this.roomDeskCactus.append(_this.roomDeskCactusImg);
-
-      _this.roomMonitorTextArea.focus();
     });
 
     _defineProperty(_assertThisInitialized(_this), "roomBgVideoMute", function () {
-      if (!_this.roomBgVideo.muted) {
-        _this.roomBgVideo.muted = true;
-        _this.muteBtnImg.src = _icons_mute_svg__WEBPACK_IMPORTED_MODULE_12__;
-      } else {
+      if (_this.roomBgVideo.muted) {
         _this.roomBgVideo.muted = false;
         _this.muteBtnImg.src = _icons_volume_svg__WEBPACK_IMPORTED_MODULE_11__;
+      } else {
+        _this.roomBgVideo.muted = true;
+        _this.muteBtnImg.src = _icons_mute_svg__WEBPACK_IMPORTED_MODULE_12__;
       }
     });
 
@@ -462,7 +1253,6 @@ var Room = /*#__PURE__*/function (_Keyboard) {
     _this.roomDesk = document.createElement('div');
     _this.roomMonitor = document.createElement('div');
     _this.roomMonitorImg = document.createElement('img');
-    _this.roomMonitorTextArea = document.createElement('textarea');
     _this.roomDeskCactus = document.createElement('div');
     _this.roomDeskCactusImg = document.createElement('img');
 
@@ -474,17 +1264,20 @@ var Room = /*#__PURE__*/function (_Keyboard) {
 
     _this.roomBgVideo.classList.add('room__video');
 
-    _this.roomBgVideo.autoplay = true;
-    _this.roomBgVideo.loop = true;
-    _this.roomBgVideo.muted = false;
     _this.roomBgVideo.id = 'room__video';
+    _this.roomBgVideo.type = 'video/mp4';
+    _this.roomBgVideo.autoplay = true;
+    _this.roomBgVideo.playsInline = true;
+    _this.roomBgVideo.loop = true;
+    _this.roomBgVideo.muted = true;
     _this.roomBgVideoSource.src = _video_keyboard_bg_mp4__WEBPACK_IMPORTED_MODULE_13__;
+    _this.roomBgVideoSource.type = 'video/mp4';
 
     _this.muteBtn.classList.add('room__bg-mute');
 
     _this.muteBtnImg.classList.add('room__video-btn');
 
-    _this.muteBtnImg.src = _icons_volume_svg__WEBPACK_IMPORTED_MODULE_11__;
+    _this.muteBtnImg.src = _icons_mute_svg__WEBPACK_IMPORTED_MODULE_12__;
     _this.muteBtnImg.alt = 'Mute';
 
     _this.container.classList.add('container');
@@ -497,11 +1290,6 @@ var Room = /*#__PURE__*/function (_Keyboard) {
 
     _this.roomMonitorImg.src = _images_mac_monitor_png__WEBPACK_IMPORTED_MODULE_10__;
     _this.roomMonitorImg.alt = 'Monitor';
-
-    _this.roomMonitorTextArea.classList.add('room__textarea');
-
-    _this.roomMonitorTextArea.id = 'textarea';
-    _this.roomMonitorTextArea.placeholder = 'RSS virtual keyboard\n\nThe keyboard created for macOS.\n\nFor change language press control + space';
 
     _this.roomDeskCactus.classList.add('room__cactus');
 
@@ -4166,17 +4954,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/assets/icons/arrows.svg":
-/*!*************************************!*\
-  !*** ./src/assets/icons/arrows.svg ***!
-  \*************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-module.exports = __webpack_require__.p + "./assets/icons/arrows.svg";
-
-/***/ }),
-
 /***/ "./src/assets/icons/backspace.svg":
 /*!****************************************!*\
   !*** ./src/assets/icons/backspace.svg ***!
@@ -4229,17 +5006,6 @@ module.exports = __webpack_require__.p + "./assets/icons/control.svg";
 
 "use strict";
 module.exports = __webpack_require__.p + "./assets/icons/enter.svg";
-
-/***/ }),
-
-/***/ "./src/assets/icons/lang.svg":
-/*!***********************************!*\
-  !*** ./src/assets/icons/lang.svg ***!
-  \***********************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-module.exports = __webpack_require__.p + "./assets/icons/lang.svg";
 
 /***/ }),
 

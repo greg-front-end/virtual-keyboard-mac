@@ -521,6 +521,11 @@ body {
 }
 
 .keyboard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   position: absolute;
   left: 50%;
   top: 6%;
@@ -532,12 +537,8 @@ body {
   border-radius: 10px;
   -webkit-box-shadow: 0px 20px 2px 0px rgba(21, 21, 21, 0.6);
           box-shadow: 0px 20px 2px 0px rgba(21, 21, 21, 0.6);
-  -webkit-transform: translateX(-50%) rotateX(10deg);
-          transform: translateX(-50%) rotateX(10deg);
-  -webkit-perspective: 1000px;
-          perspective: 1000px;
-  -webkit-perspective-origin: 50% 50%;
-          perspective-origin: 50% 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
@@ -588,6 +589,8 @@ body {
   display: block;
   margin-top: -6px;
   margin-bottom: 10px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 .keyboard__key span {
   color: #FFFFFF;
@@ -595,6 +598,11 @@ body {
   display: block;
   position: relative;
   font-size: 24px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.keyboard__key span.uppercase {
+  text-transform: uppercase;
 }
 .keyboard__key:before {
   content: "";
@@ -625,10 +633,14 @@ body {
 .keyboard__key:active img {
   -webkit-transform: translateY(-2px);
           transform: translateY(-2px);
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 .keyboard__key:active span {
   -webkit-transform: translateY(-2px);
           transform: translateY(-2px);
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 .keyboard__key:active:before {
   right: 10px;
@@ -636,15 +648,11 @@ body {
   -webkit-box-shadow: 0px 0px 2px rgba(255, 255, 255, 0.25), 0px 0px 0px rgba(0, 0, 0, 0.15);
           box-shadow: 0px 0px 2px rgba(255, 255, 255, 0.25), 0px 0px 0px rgba(0, 0, 0, 0.15);
 }
-
-.hidden {
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  opacity: 0;
-  font-size: 0;
-  visibility: hidden;
-  height: 0;
-  width: 0;
+.keyboard__key.focus-visible {
+  outline: none;
+}
+.keyboard__key:focus-visible {
+  outline: none;
 }
 
 .backspace {
@@ -677,11 +685,40 @@ body {
   margin-right: 90px;
 }
 
+.capslock.active {
+  -webkit-box-shadow: inset 0px 0 0px rgba(0, 0, 0, 0.15), inset 0px 0px 0px rgba(0, 0, 0, 0.25), 0 0 0 0px rgba(0, 0, 0, 0.75), 0px 0px 0px rgba(0, 0, 0, 0.4);
+          box-shadow: inset 0px 0 0px rgba(0, 0, 0, 0.15), inset 0px 0px 0px rgba(0, 0, 0, 0.25), 0 0 0 0px rgba(0, 0, 0, 0.75), 0px 0px 0px rgba(0, 0, 0, 0.4);
+}
+.capslock.active img {
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+.capslock.active span {
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+.capslock.active span {
+  background-color: greenyellow;
+}
+
+.active:is(:not(.control-left):not(.space):not(.tab):not(.backspace):not(.shift-right):not(.key-w):not(.key-s):not(.key-a):not(.key-d)) {
+  -webkit-box-shadow: inset 0px 0 0px rgba(0, 0, 0, 0.15), inset 0px 0px 0px rgba(0, 0, 0, 0.25), 0 0 0 0px rgba(0, 0, 0, 0.75), 0px 0px 0px rgba(0, 0, 0, 0.4);
+          box-shadow: inset 0px 0 0px rgba(0, 0, 0, 0.15), inset 0px 0px 0px rgba(0, 0, 0, 0.25), 0 0 0 0px rgba(0, 0, 0, 0.75), 0px 0px 0px rgba(0, 0, 0, 0.4);
+}
+.active:is(:not(.control-left):not(.space):not(.tab):not(.backspace):not(.shift-right):not(.key-w):not(.key-s):not(.key-a):not(.key-d)) img {
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+.active:is(:not(.control-left):not(.space):not(.tab):not(.backspace):not(.shift-right):not(.key-w):not(.key-s):not(.key-a):not(.key-d)) span {
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+
 .backslash {
   position: relative;
   z-index: 1;
-  -webkit-transform: translateY(-2px) rotateX(20deg);
-          transform: translateY(-2px) rotateX(20deg);
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
 }
 
 .enter {
@@ -728,6 +765,10 @@ body {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+}
+
+.control-left {
+  width: 120px;
 }
 
 .language span {
@@ -794,6 +835,8 @@ body {
 .arrow-right,
 .arrow-up,
 .arrow-down {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
   height: 40px;
 }
 
@@ -803,24 +846,10 @@ body {
       align-self: flex-end;
 }
 
-.arrow-left img {
-  -webkit-transform: rotate(-90deg);
-          transform: rotate(-90deg);
-}
-
-.arrow-right img {
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
-}
-
 .arrow-down {
-  bottom: 10px;
+  bottom: 0px;
   position: absolute;
   right: 84px;
-}
-.arrow-down img {
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
 }
 
 .arrow-up {
@@ -828,7 +857,7 @@ body {
       align-self: flex-start;
 }
 
-.language,
+.control-left,
 .space,
 .tab,
 .backspace,
@@ -842,7 +871,7 @@ body {
   -webkit-box-shadow: inset -8px 0 8px rgb(30, 44, 44), inset 0px -8px 8px rgb(14, 22, 22), 0 0 0 2px rgb(23, 31, 31), 10px 20px 25px rgb(26, 42, 42);
           box-shadow: inset -8px 0 8px rgb(30, 44, 44), inset 0px -8px 8px rgb(14, 22, 22), 0 0 0 2px rgb(23, 31, 31), 10px 20px 25px rgb(26, 42, 42);
 }
-.language:hover:before,
+.control-left:hover:before,
 .space:hover:before,
 .tab:hover:before,
 .backspace:hover:before,
@@ -854,7 +883,7 @@ body {
   background: -webkit-gradient(linear, left top, right top, from(rgb(21, 35, 35)), to(rgb(77, 128, 128)));
   background: linear-gradient(90deg, rgb(21, 35, 35), rgb(77, 128, 128));
 }
-.language::before,
+.control-left::before,
 .space::before,
 .tab::before,
 .backspace::before,
@@ -871,6 +900,55 @@ body {
   border-left: 1px solid rgb(72, 95, 95);
   border-bottom: 1px solid rgb(46, 79, 79);
   border-top: 1px solid rgb(24, 40, 40);
+}
+
+.active:is(.control-left,
+.space,
+.tab,
+.backspace,
+.shift-right,
+.key-w,
+.key-s,
+.key-a,
+.key-d,
+.arrow-down,
+.arrow-left,
+.arrow-right,
+.arrow-up) {
+  -webkit-box-shadow: inset 0px 0 0px rgb(30, 44, 44), inset 0px 0px 0px rgb(14, 22, 22), 0 0 0 0px rgb(23, 31, 31), 0px 0px 0px rgb(26, 42, 42);
+          box-shadow: inset 0px 0 0px rgb(30, 44, 44), inset 0px 0px 0px rgb(14, 22, 22), 0 0 0 0px rgb(23, 31, 31), 0px 0px 0px rgb(26, 42, 42);
+}
+.active:is(.control-left,
+.space,
+.tab,
+.backspace,
+.shift-right,
+.key-w,
+.key-s,
+.key-a,
+.key-d,
+.arrow-down,
+.arrow-left,
+.arrow-right,
+.arrow-up) img {
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+.active:is(.control-left,
+.space,
+.tab,
+.backspace,
+.shift-right,
+.key-w,
+.key-s,
+.key-a,
+.key-d,
+.arrow-down,
+.arrow-left,
+.arrow-right,
+.arrow-up) span {
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
 }
 
 .room {
@@ -937,7 +1015,7 @@ body {
   position: absolute;
   top: -200px;
   left: -80px;
-  z-index: 0;
+  z-index: -1;
   width: 280px;
 }
 .room__cactus:after {

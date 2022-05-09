@@ -14,7 +14,7 @@
     position: absolute;
     top: -200px;
     left: -80px;
-    z-index: 0;
+    z-index: -1;
     width: 280px;
     &:after {
       content: '';
