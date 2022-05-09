@@ -22,8 +22,9 @@ class Keys {
     this.textArea.classList.add('room__textarea');
     this.textArea.id = ('textarea');
     this.textArea.placeholder = 'RSS virtual keyboard\n\nThe keyboard created for macOS.\n\nFor change language press option + space. \n\nControl, commands values are emoji';
-    this.renderTextArea = () => this.textArea;
   }
+
+  renderTextArea = () => this.textArea;
 
   renderKey = (keys) => {
     this.button.classList.add('keyboard__key');
@@ -196,7 +197,7 @@ class Keys {
   pressKey = (id) => {
     document.addEventListener('keydown', (e) => {
       e.preventDefault();
-      this.printTextArea();
+      this.printTextArea(e.key);
       if (id === e.code) {
         this.button.classList.add('active');
       }
@@ -255,7 +256,7 @@ class Keys {
   };
 
   printTextArea = () => {
-    this.textArea.innerHTML += this.span.textContent;
+    this.textArea.setRangeText(this.span.textContent, this.textArea.selectionStart, this.textArea.selectionEnd, 'end');
   };
 }
 export default Keys;
