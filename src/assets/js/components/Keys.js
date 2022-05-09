@@ -18,12 +18,11 @@ class Keys {
     this.span = document.createElement('span');
     this.buttonImg = document.createElement('img');
     this.language = localStorage.getItem('language') || 'en';
-
+    this.textArea = document.createElement('textarea');
+    this.textArea.classList.add('room__textarea');
+    this.textArea.id = ('textarea');
+    this.textArea.placeholder = 'RSS virtual keyboard\n\nThe keyboard created for macOS.\n\nFor change language press option + space. \n\nControl, commands values are emoji';
     this.renderTextArea = () => {
-      this.textArea = document.createElement('textarea');
-      this.textArea.classList.add('room__textarea');
-      this.textArea.id = ('textarea');
-      this.textArea.placeholder = 'RSS virtual keyboard\n\nThe keyboard created for macOS.\n\nFor change language press option + space. \n\nControl, commands values are emoji';
       return this.textArea;
     };
   }
@@ -197,6 +196,7 @@ class Keys {
   pressKey = (id) => {
     document.addEventListener('keydown', (e) => {
       e.preventDefault();
+      this.printTextArea();
       if (id === e.code) {
         this.button.classList.add('active');
       }
@@ -216,7 +216,7 @@ class Keys {
         this.setButtonValue(id);
         this.isCapslock = true;
       }
-      if ((e.code === 'ShiftLeft' || e.code === 'ShiftRight') && !this.isShift) {
+      if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
         this.textCase = 'high';
         this.setButtonValue(id);
         this.isShift = true;
@@ -228,7 +228,7 @@ class Keys {
         this.setButtonValue(id);
         this.isCapslock = false;
       }
-      if ((e.code === 'ShiftLeft' || e.code === 'ShiftRight') && this.isShift && !this.isCapslock) {
+      if ((e.code === 'ShiftLeft' || e.code === 'ShiftRight') && this.isShift) {
         this.textCase = 'low';
         this.setButtonValue(id);
         this.isCapslock = false;
@@ -240,7 +240,7 @@ class Keys {
   toggleLanguage = (id) => {
     if (!this.altLeftLang) {
       document.addEventListener('keydown', (e) => {
-        if (e.code === 'AltLeft') {
+        if (e.code === 'AltLeft' || e.code === 'AltRight') {
           this.altLeftLang = true;
         }
         if (e.code === 'Space' && this.altLeftLang) {
@@ -252,6 +252,11 @@ class Keys {
         }
       });
     }
+  };
+
+  printTextArea = () => {
+    console.log('here should be textarea')
+    this.textArea.innerHTML += this.span.textContent;
   };
 }
 export default Keys;
