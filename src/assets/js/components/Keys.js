@@ -886,7 +886,6 @@ class Keys {
   };
 
   setButtonValue = (id) => {
-    this.span.innerHTML = id[this.language][this.textCase];
     switch (id.id) {
       case 'Tab':
         this.span.innerHTML = '&#160;&#160;&#160;&#160;';
