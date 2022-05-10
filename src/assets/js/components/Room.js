@@ -67,7 +67,7 @@ class Room extends Keyboard {
     this.container.append(this.roomDesk);
     this.roomDesk.append(this.roomMonitor);
     this.roomMonitor.append(this.roomMonitorImg);
-    this.roomMonitor.append(this.area.renderTextArea());
+    this.roomMonitor.append(this.renderTextArea());
     this.roomDesk.append(this.roomDeskCactus);
     this.roomDeskCactus.append(this.roomDeskCactusImg);
   };

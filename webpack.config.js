@@ -55,9 +55,6 @@ const plugins = [
   new MiniCssExtractPlugin({
     filename: `${filename('.css')}`
   }),
-  new CopyPlugin({
-    patterns: [{ from: 'src/assets/data', to: 'assets/data' }]
-  }),
   new ESLintPlugin(options),
 ];
 
