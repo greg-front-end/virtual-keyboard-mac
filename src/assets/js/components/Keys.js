@@ -916,7 +916,7 @@ class Keys {
         this.span.innerHTML = '&#8595;';
         break;
       default:
-        this.innerHTML = id[this.language][this.textCase];
+        this.span.innerHTML = id[this.language][this.textCase];
         break;
     }
   };
