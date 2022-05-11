@@ -821,9 +821,11 @@ class Keyboard {
     if (!this.isOptionPress) {
       this.isOptionPress = true;
       this.language = this.language === 'en' ? this.language = 'ru' : this.language = 'en';
+      localStorage.setItem('language', this.language);
     } else {
       this.isOptionPress = false;
       this.language = this.language === 'en' ? this.language = 'ru' : this.language = 'en';
+      localStorage.setItem('language', this.language);
     }
   };
 
