@@ -7,7 +7,6 @@
   top: 6%;
   width: 1200px;
   max-width: 100%;
-  height: 400px;
   background-color: var(--grey-light);
   border-radius: $border-r;
   box-shadow: $keyboard-shadow;
@@ -19,8 +18,8 @@
     transition: all 0.3s;
   }
   &__key {
-    width: 78px;
-    height: 78px; 
+    width: clamp(40px, calc(78 / 1200 * 100vw), 78px);
+    height: clamp(40px, calc(78 / 1200 * 100vw), 78px); 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -105,10 +104,10 @@
   }
 }
 .tab {
-  width: 100px;
+  width: clamp(60px, calc(100 / 1280 * 100vw), 100px);
 }
 .capslock {
-  width: 140px;
+  width: clamp(60px, calc(140 / 1380 * 100vw), 140px);
   transition: $transition;
   span {
     transition: $transition;
@@ -160,12 +159,10 @@
   transform: translateY(-2px);
 }
 .enter {
-  z-index: 0;
-  width: 80px;
-  transform: rotateX(20deg);
+  width: clamp(60px, calc(80 / 1200 * 100vw), 80px);
   right: 0;
-  @media screen and (min-width: 1200px) {
-    height: 160px;
+  @media screen and (min-width: 320px) {
+    height: clamp(80px, calc(80 / 700 * 100vw), 160px);
     top: 74px;
     position: absolute;
     img {
@@ -176,7 +173,7 @@
       position: absolute;
       left: -2px;
       bottom: -1px;
-      height: 82px;
+      height: clamp(40px, calc(85 / 1200 * 100vw), 85px);
       width: 40px;
       border-top-right-radius: 6px;
       background: var(--grey-light);
@@ -189,13 +186,13 @@
   }
 }
 .shift-left {
-  width: 100px;
+  width: clamp(60px, calc(100 / 1200 * 100vw), 100px);
 }
 .shift-right {
   flex-grow: 1;
 }
 .control-left {
-  width: 120px;
+  width: clamp(80px, calc(120 / 1200 * 100vw), 120px);
 }
 .language {
   span {
@@ -226,9 +223,9 @@
   span {
     font-size: 12px;
   }
-  width: 90px;
+  width: clamp(50px, calc(90 / 1200 * 100vw), 90px);
   @media (min-width: 1200px) {
-    width: 110px;
+    width: clamp(60px, calc(110 / 1200 * 100vw), 110px);
     span {
       font-size: 15px;
     }

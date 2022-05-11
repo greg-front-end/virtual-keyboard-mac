@@ -9,10 +9,6 @@ import commandImg from '../../icons/command.svg';
 
 class Keys {
   constructor() {
-    this.isCapslock = localStorage.getItem('isCapslock') || false;
-    this.isShift = localStorage.getItem('isShift') || false;
-    this.textCase = localStorage.getItem('case') || 'low';
-    this.altLeftLang = localStorage.getItem('altLeftLang') || false;
     this.button = document.createElement('button');
     this.span = document.createElement('span');
     this.buttonImg = document.createElement('img');
@@ -40,21 +36,6 @@ class Keys {
         this.button.classList.add('capslock');
         this.buttonImg.src = capsImg;
         this.buttonImg.alt = 'backspace';
-        this.button.addEventListener('click', () => {
-          if (!this.isCapslock) {
-            this.button.classList.add('active');
-            this.isCapslock = true;
-            localStorage.setItem('isCapslock', this.isCapslock);
-            this.textCase = 'high';
-            localStorage.setItem('case', this.textCase);
-          } else {
-            this.button.classList.remove('active');
-            this.isCapslock = false;
-            localStorage.setItem('isCapslock', this.isCapslock);
-            this.textCase = 'low';
-            localStorage.setItem('case', this.textCase);
-          }
-        });
         break;
       case 'Backslash':
         this.button.classList.add('backslash');
@@ -153,8 +134,6 @@ class Keys {
         break;
     }
     this.setButtonValue(keys);
-    this.toggleLanguage(keys);
-    this.toggleTextCase(keys);
     this.pressKey(keys.id);
     return this.button;
   };
@@ -190,7 +169,7 @@ class Keys {
         this.span.innerHTML = '&#8595;';
         break;
       default:
-        this.span.innerHTML = id[this.language][this.textCase];
+        this.span.innerHTML = id[this.language].low;
         break;
     }
   };
@@ -208,60 +187,6 @@ class Keys {
         this.button.classList.remove('active');
       }
     });
-  };
-
-  toggleTextCase = (id) => {
-    document.addEventListener('keydown', (e) => {
-      if (e.code === 'CapsLock' && !this.isCapslock) {
-        this.textCase = 'high';
-        localStorage.setItem('case', this.textCase);
-        this.setButtonValue(id);
-        this.isCapslock = true;
-        localStorage.setItem('isCapslock', this.isCapslock);
-      }
-      if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
-        this.textCase = 'high';
-        localStorage.setItem('case', this.textCase);
-        this.setButtonValue(id);
-        this.isShift = true;
-        localStorage.setItem('isShift', this.isShift);
-      }
-    });
-    document.addEventListener('keyup', (e) => {
-      if (e.code === 'CapsLock' && this.isCapslock) {
-        this.textCase = 'low';
-        localStorage.setItem('case', this.textCase);
-        this.setButtonValue(id);
-        this.isCapslock = false;
-        localStorage.setItem('isCapslock', this.isCapslock);
-      }
-      if ((e.code === 'ShiftLeft' || e.code === 'ShiftRight') && this.isShift) {
-        this.textCase = 'low';
-        localStorage.setItem('case', this.textCase);
-        this.setButtonValue(id);
-        this.isCapslock = false;
-        this.isShift = false;
-        localStorage.setItem('isShift', this.isShift);
-        localStorage.setItem('isCapslock', this.isCapslock);
-      }
-    });
-  };
-
-  toggleLanguage = (id) => {
-    if (!this.altLeftLang) {
-      document.addEventListener('keydown', (e) => {
-        if (e.code === 'AltLeft' || e.code === 'AltRight') {
-          this.altLeftLang = true;
-          localStorage.setItem('altLeftLang', this.altLeftLang);
-          this.language = this.language === 'en' ? this.language = 'ru' : this.language = 'en';
-          this.setButtonValue(id);
-        } else {
-          localStorage.setItem('altLeftLang', this.altLeftLang);
-          this.altLeftLang = false;
-          this.setButtonValue(id);
-        }
-      });
-    }
   };
 }
 export default Keys;

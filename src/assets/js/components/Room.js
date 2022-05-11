@@ -5,9 +5,8 @@ import roomBgVideoFile from '../../video/keyboard-bg.mp4';
 import roomDeskCactusImage from '../../images/cactus.png';
 import Keyboard from './Keyboard';
 
-class Room extends Keyboard {
+class Room {
   constructor() {
-    super();
     this.main = document.createElement('main');
     this.section = document.createElement('section');
     this.roomBg = document.createElement('div');
@@ -48,7 +47,6 @@ class Room extends Keyboard {
     this.roomDeskCactusImg.classList.add('room__cactus-img');
     this.roomDeskCactusImg.src = roomDeskCactusImage;
     this.roomDeskCactusImg.alt = 'Cactus';
-    this.roomDesk.append(this.keyboard);
 
     this.muteBtn.addEventListener('click', () => {
       this.roomBgVideoMute();
@@ -56,6 +54,7 @@ class Room extends Keyboard {
   }
 
   render = () => {
+    const keyboard = new Keyboard();
     document.querySelector('body').append(this.main);
     this.main.append(this.section);
     this.section.append(this.roomBg);
@@ -67,9 +66,11 @@ class Room extends Keyboard {
     this.container.append(this.roomDesk);
     this.roomDesk.append(this.roomMonitor);
     this.roomMonitor.append(this.roomMonitorImg);
-    this.roomMonitor.append(this.renderTextArea());
+    this.roomMonitor.append(keyboard.renderTextArea());
     this.roomDesk.append(this.roomDeskCactus);
     this.roomDeskCactus.append(this.roomDeskCactusImg);
+    this.roomDesk.append(keyboard.keyboard);
+    keyboard.renderKeyboard();
   };
 
   roomBgVideoMute = () => {

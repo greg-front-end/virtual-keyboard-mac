@@ -2,6 +2,10 @@ import Keys from './Keys';
 
 class Keyboard {
   constructor() {
+    this.language = localStorage.getItem('language') || 'en';
+    this.isUpperCase = 'low';
+    this.isCapslock = false;
+    this.isShift = false;
     this.isOptionPress = false;
     this.buttons = [];
     this.keyboard = document.createElement('div');
@@ -729,33 +733,23 @@ class Keyboard {
           if (e.code === 'MetaRight' || e.code === 'MetaLeft') {
             btn.span.innerHTML = '&#129323;';
           }
+          if (e.code === 'CapsLock' && !this.isCapslock) {
+            this.isUpperCase = 'high';
+            this.updateKeysValues();
+            this.isCapslock = true;
+          }
+          if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
+            if (!this.isCapslock) {
+              this.isUpperCase = 'high';
+              this.updateKeysValues();
+              this.isShift = true;
+            }
+          }
           if (e.code === 'AltLeft' || e.code === 'AltRight') {
             e.preventDefault();
-            if (!this.isOptionPress) {
-              let language = localStorage.getItem('language') || 'en';
-              const cases = localStorage.getItem('case') || 'low';
-              this.isOptionPress = true;
-              btn.span.textContent = '';
-              language = language === 'en' ? 'ru' : 'en';
-              localStorage.setItem('language', language);
-              this.buttons.reduce((buttonss, button, idx) => {
-                if (button.firstChild && button.lastChild && button.firstChild.nodeName === 'SPAN') {
-                  if (!button.classList.contains('arrow-left') && !button.classList.contains('arrow-right') && !button.classList.contains('arrow-up') && !button.classList.contains('arrow-down')) {
-                    const btns = button;
-                    btns.firstChild.textContent = this.keys[idx][language][cases];
-                    buttonss.push(btns);
-                  }
-                }
-                if (button.firstChild && button.lastChild && button.lastChild.nodeName === 'SPAN') {
-                  if (!button.classList.contains('arrow-left') && !button.classList.contains('arrow-right') && !button.classList.contains('arrow-up') && !button.classList.contains('arrow-down')) {
-                    const btns = button;
-                    btns.lastChild.textContent = this.keys[idx][language][cases];
-                    buttonss.push(btns);
-                  }
-                }
-                return buttonss;
-              }, []);
-            }
+            btn.span.textContent = '';
+            this.toggleLanguage();
+            this.updateKeysValues();
           }
           if (e.code === 'ControlLeft') {
             btn.span.innerHTML = '&#129313;';
@@ -772,8 +766,21 @@ class Keyboard {
           this.textArea.setRangeText(btn.span.textContent, this.textArea.selectionStart, this.textArea.selectionEnd, 'end');
         }
       });
-      document.addEventListener('keyup', () => {
+      document.addEventListener('keyup', (e) => {
         this.isOptionPress = false;
+        if (e.code === 'CapsLock' && this.isCapslock) {
+          this.isUpperCase = 'low';
+          this.isCapslock = false;
+          this.updateKeysValues();
+        }
+        if ((e.code === 'ShiftLeft' || e.code === 'ShiftRight') && this.isShift) {
+          if (!this.isCapslock) {
+            this.isUpperCase = 'low';
+            this.isCapslock = false;
+            this.isShift = false;
+            this.updateKeysValues();
+          }
+        }
       });
     });
     return this.textArea;
@@ -784,69 +791,76 @@ class Keyboard {
       const button = new Keys();
       this.buttons.push(button.renderKey(element));
     });
-    this.updateKeysValues();
+    this.buttons.forEach((button) => {
+      this.keyboard.append(button);
+    });
     this.clickButtonSetArea();
   };
 
   updateKeysValues = () => {
-    this.buttons.forEach((button) => {
-      this.keyboard.append(button);
-    });
+    this.buttons.reduce((buttonss, button, idx) => {
+      if (button.firstChild && button.lastChild && button.firstChild.nodeName === 'SPAN') {
+        if (!button.classList.contains('arrow-left') && !button.classList.contains('arrow-right') && !button.classList.contains('arrow-up') && !button.classList.contains('arrow-down')) {
+          const btn = button;
+          btn.firstChild.textContent = this.keys[idx][this.language][this.isUpperCase];
+          buttonss.push(btn);
+        }
+      }
+      if (button.firstChild && button.lastChild && button.lastChild.nodeName === 'SPAN') {
+        if (!button.classList.contains('arrow-left') && !button.classList.contains('arrow-right') && !button.classList.contains('arrow-up') && !button.classList.contains('arrow-down')) {
+          const btn = button;
+          btn.lastChild.textContent = this.keys[idx][this.language][this.isUpperCase];
+          buttonss.push(btn);
+        }
+      }
+      return buttonss;
+    }, []);
+  };
+
+  toggleLanguage = () => {
+    if (!this.isOptionPress) {
+      this.isOptionPress = true;
+      this.language = this.language === 'en' ? this.language = 'ru' : this.language = 'en';
+    } else {
+      this.isOptionPress = false;
+      this.language = this.language === 'en' ? this.language = 'ru' : this.language = 'en';
+    }
+  };
+
+  toggCapslock = () => {
+    if (!this.isCapslock && !this.isShift) {
+      this.isCapslock = true;
+      this.isUpperCase = this.isUpperCase === 'low' ? this.isUpperCase = 'high' : this.isUpperCase = 'low';
+    } else {
+      this.isCapslock = false;
+      this.isUpperCase = this.isUpperCase === 'low' ? this.isUpperCase = 'high' : this.isUpperCase = 'low';
+    }
+  };
+
+  toggleShift = () => {
+    if (!this.isCapslock) {
+      if (!this.isShift) {
+        this.isShift = true;
+        this.isUpperCase = this.isUpperCase === 'low' ? this.isUpperCase = 'high' : this.isUpperCase = 'low';
+      } else {
+        this.isShift = false;
+        this.isUpperCase = this.isUpperCase === 'low' ? this.isUpperCase = 'high' : this.isUpperCase = 'low';
+      }
+    }
   };
 
   clickButtonSetArea = () => {
-    let language = localStorage.getItem('language') || 'en';
-    let cases = localStorage.getItem('case') || 'low';
-    let isCapslock = localStorage.getItem('isCapslock') || true;
-    let isShift = localStorage.getItem('isShift') || false;
-    let altLeftLang = localStorage.getItem('altLeftLang') || false;
     this.keyboard.addEventListener('click', (e) => {
       if (!e.target.classList.contains('keyboard')) {
         if (e.target.closest('.capslock')) {
-          if (isCapslock) {
-            cases = 'low';
-            isCapslock = false;
-            this.buttons.reduce((buttonss, button, idx) => {
-              if (button.firstChild && button.lastChild && button.firstChild.nodeName === 'SPAN') {
-                if (!button.classList.contains('arrow-left') && !button.classList.contains('arrow-right') && !button.classList.contains('arrow-up') && !button.classList.contains('arrow-down')) {
-                  const btn = button;
-                  btn.firstChild.textContent = this.keys[idx][language][cases];
-                  buttonss.push(btn);
-                }
-              }
-              if (button.firstChild && button.lastChild && button.lastChild.nodeName === 'SPAN') {
-                if (!button.classList.contains('arrow-left') && !button.classList.contains('arrow-right') && !button.classList.contains('arrow-up') && !button.classList.contains('arrow-down')) {
-                  const btn = button;
-                  btn.lastChild.textContent = this.keys[idx][language][cases];
-                  buttonss.push(btn);
-                }
-              }
-              return buttonss;
-            }, []);
-            localStorage.setItem('case', cases);
-            localStorage.setItem('isCapslock', isCapslock);
+          if (!this.isCapslock) {
+            this.toggCapslock();
+            this.updateKeysValues();
+            e.target.classList.add('active');
           } else {
-            cases = 'high';
-            isCapslock = true;
-            this.buttons.reduce((buttonss, button, idx) => {
-              if (button.firstChild && button.lastChild && button.firstChild.nodeName === 'SPAN') {
-                if (!button.classList.contains('arrow-left') && !button.classList.contains('arrow-right') && !button.classList.contains('arrow-up') && !button.classList.contains('arrow-down')) {
-                  const btn = button;
-                  btn.firstChild.textContent = this.keys[idx][language][cases];
-                  buttonss.push(btn);
-                }
-              }
-              if (button.firstChild && button.lastChild && button.lastChild.nodeName === 'SPAN') {
-                if (!button.classList.contains('arrow-left') && !button.classList.contains('arrow-right') && !button.classList.contains('arrow-up') && !button.classList.contains('arrow-down')) {
-                  const btn = button;
-                  btn.lastChild.textContent = this.keys[idx][language][cases];
-                  buttonss.push(btn);
-                }
-              }
-              return buttonss;
-            }, []);
-            localStorage.setItem('case', cases);
-            localStorage.setItem('isCapslock', isCapslock);
+            this.toggCapslock();
+            this.updateKeysValues();
+            e.target.classList.remove('active');
           }
         } else if (e.target.closest('.backspace')) {
           if (this.textArea.selectionStart === 0 && this.textArea.selectionEnd === 0) return;
@@ -862,98 +876,23 @@ class Keyboard {
           this.textArea.setRangeText('\n', this.textArea.selectionStart, this.textArea.selectionEnd, 'end');
         } else if (e.target.closest('.shift-left') || e.target.closest('.shift-right')) {
           e.preventDefault();
-          if (isShift) {
-            cases = 'low';
-            isShift = false;
-            this.buttons.reduce((buttonss, button, idx) => {
-              if (button.firstChild && button.lastChild && button.firstChild.nodeName === 'SPAN') {
-                if (!button.classList.contains('arrow-left') && !button.classList.contains('arrow-right') && !button.classList.contains('arrow-up') && !button.classList.contains('arrow-down')) {
-                  const btn = button;
-                  btn.firstChild.textContent = this.keys[idx][language][cases];
-                  buttonss.push(btn);
-                }
-              }
-              if (button.firstChild && button.lastChild && button.lastChild.nodeName === 'SPAN') {
-                if (!button.classList.contains('arrow-left') && !button.classList.contains('arrow-right') && !button.classList.contains('arrow-up') && !button.classList.contains('arrow-down')) {
-                  const btn = button;
-                  btn.lastChild.textContent = this.keys[idx][language][cases];
-                  buttonss.push(btn);
-                }
-              }
-              return buttonss;
-            }, []);
-            localStorage.setItem('case', cases);
-            localStorage.setItem('isShift', isShift);
+          if (!this.isShift) {
+            this.toggleShift();
+            this.updateKeysValues();
           } else {
-            cases = 'high';
-            isShift = true;
-            this.buttons.reduce((buttonss, button, idx) => {
-              if (button.firstChild && button.lastChild && button.firstChild.nodeName === 'SPAN') {
-                if (!button.classList.contains('arrow-left') && !button.classList.contains('arrow-right') && !button.classList.contains('arrow-up') && !button.classList.contains('arrow-down')) {
-                  const btn = button;
-                  btn.firstChild.textContent = this.keys[idx][language][cases];
-                  buttonss.push(btn);
-                }
-              }
-              if (button.firstChild && button.lastChild && button.lastChild.nodeName === 'SPAN') {
-                if (!button.classList.contains('arrow-left') && !button.classList.contains('arrow-right') && !button.classList.contains('arrow-up') && !button.classList.contains('arrow-down')) {
-                  const btn = button;
-                  btn.lastChild.textContent = this.keys[idx][language][cases];
-                  buttonss.push(btn);
-                }
-              }
-              return buttonss;
-            }, []);
-            localStorage.setItem('case', cases);
-            localStorage.setItem('isShisft', isShift);
+            this.toggleShift();
+            this.updateKeysValues();
           }
         } else if (e.target.closest('.control-left')) {
           e.preventDefault();
           this.textArea.innerHTML = '';
         } else if (e.target.closest('.option-left') || e.target.closest('.option-right')) {
-          altLeftLang = true;
-          // e.target.classList.add('active');
-          if (altLeftLang) {
-            language = language === 'en' ? 'ru' : 'en';
-            localStorage.setItem('language', language);
-            this.buttons.reduce((buttonss, button, idx) => {
-              if (button.firstChild && button.lastChild && button.firstChild.nodeName === 'SPAN') {
-                if (!button.classList.contains('arrow-left') && !button.classList.contains('arrow-right') && !button.classList.contains('arrow-up') && !button.classList.contains('arrow-down')) {
-                  const btn = button;
-                  btn.firstChild.textContent = this.keys[idx][language][cases];
-                  buttonss.push(btn);
-                }
-              }
-              if (button.firstChild && button.lastChild && button.lastChild.nodeName === 'SPAN') {
-                if (!button.classList.contains('arrow-left') && !button.classList.contains('arrow-right') && !button.classList.contains('arrow-up') && !button.classList.contains('arrow-down')) {
-                  const btn = button;
-                  btn.lastChild.textContent = this.keys[idx][language][cases];
-                  buttonss.push(btn);
-                }
-              }
-              return buttonss;
-            }, []);
+          if (!this.isOptionPress) {
+            this.toggleLanguage();
+            this.updateKeysValues();
           } else {
-            altLeftLang = false;
-            language = language === 'en' ? 'ru' : 'en';
-            localStorage.setItem('language', language);
-            this.buttons.reduce((buttonss, button, idx) => {
-              if (button.firstChild && button.lastChild && button.firstChild.nodeName === 'SPAN') {
-                if (!button.classList.contains('arrow-left') && !button.classList.contains('arrow-right') && !button.classList.contains('arrow-up') && !button.classList.contains('arrow-down')) {
-                  const btn = button;
-                  btn.firstChild.textContent = this.keys[idx][language][cases];
-                  buttonss.push(btn);
-                }
-              }
-              if (button.firstChild && button.lastChild && button.lastChild.nodeName === 'SPAN') {
-                if (!button.classList.contains('arrow-left') && !button.classList.contains('arrow-right') && !button.classList.contains('arrow-up') && !button.classList.contains('arrow-down')) {
-                  const btn = button;
-                  btn.lastChild.textContent = this.keys[idx][language][cases];
-                  buttonss.push(btn);
-                }
-              }
-              return buttonss;
-            }, []);
+            this.toggleLanguage();
+            this.updateKeysValues();
           }
         } else if (e.target.closest('.command-left') || e.target.closest('.command-right')) {
           e.preventDefault();
