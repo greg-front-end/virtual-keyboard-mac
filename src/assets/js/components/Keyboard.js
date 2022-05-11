@@ -879,7 +879,8 @@ class Keyboard {
             localStorage.setItem('isShisft', isShift);
           }
         } else if (e.target.closest('.control-left')) {
-          this.textArea.textContent = '';
+          e.preventDefault();
+          this.textArea.innerHTML = '';
         } else if (e.target.closest('.option-left') || e.target.closest('.option-right')) {
           altLeftLang = true;
           e.target.classList.add('active');
@@ -927,25 +928,9 @@ class Keyboard {
           }
         } else if (e.target.closest('.command-left') || e.target.closest('.command-right')) {
           e.preventDefault();
-          this.textArea.textContent = '';
+          this.textArea.innerHTML = '';
         } else if (e.target.closest('.space')) {
           this.textArea.setRangeText(' ', this.textArea.selectionStart, this.textArea.selectionEnd, 'end');
-        } else if (e.target.closest('.arrow-left')) {
-          this.textArea.innerHTML += '&#8592;';
-          this.textArea.selectionStart = this.textArea.value.length;
-          this.textArea.selectionEnd = this.textArea.value.length;
-        } else if (e.target.closest('.arrow-right')) {
-          this.textArea.innerHTML += '&#8594;';
-          this.textArea.selectionStart = this.textArea.value.length;
-          this.textArea.selectionEnd = this.textArea.value.length;
-        } else if (e.target.closest('.arrow-up')) {
-          this.textArea.innerHTML += '&#8593;';
-          this.textArea.selectionStart = this.textArea.value.length;
-          this.textArea.selectionEnd = this.textArea.value.length;
-        } else if (e.target.closest('.arrow-down')) {
-          this.textArea.innerHTML += '&#8595;';
-          this.textArea.selectionStart = this.textArea.value.length;
-          this.textArea.selectionEnd = this.textArea.value.length;
         } else {
           this.textArea.setRangeText(e.target.textContent, this.textArea.selectionStart, this.textArea.selectionEnd, 'end');
         }
