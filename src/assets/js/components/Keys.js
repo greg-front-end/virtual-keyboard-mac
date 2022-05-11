@@ -253,13 +253,12 @@ class Keys {
         if (e.code === 'AltLeft' || e.code === 'AltRight') {
           this.altLeftLang = true;
           localStorage.setItem('altLeftLang', this.altLeftLang);
-        }
-        if (e.code === 'Space' && this.altLeftLang) {
-          e.preventDefault();
           this.language = this.language === 'en' ? this.language = 'ru' : this.language = 'en';
-          localStorage.setItem('language', this.language);
-          this.altLeftLang = false;
+          this.setButtonValue(id);
+        } else {
+          // this.language = this.language === 'en' ? this.language = 'ru' : this.language = 'en';
           localStorage.setItem('altLeftLang', this.altLeftLang);
+          this.altLeftLang = false;
           this.setButtonValue(id);
         }
       });

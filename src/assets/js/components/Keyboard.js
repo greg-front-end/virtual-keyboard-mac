@@ -2,6 +2,7 @@ import Keys from './Keys';
 
 class Keyboard {
   constructor() {
+    this.isOptionPress = false;
     this.buttons = [];
     this.keyboard = document.createElement('div');
     this.keyboard.classList.add('room__keyboard', 'keyboard');
@@ -729,7 +730,32 @@ class Keyboard {
             btn.span.innerHTML = '&#129323;';
           }
           if (e.code === 'AltLeft' || e.code === 'AltRight') {
-            btn.span.innerHTML = '';
+            e.preventDefault();
+            if (!this.isOptionPress) {
+              let language = localStorage.getItem('language') || 'en';
+              const cases = localStorage.getItem('case') || 'low';
+              this.isOptionPress = true;
+              btn.span.textContent = '';
+              language = language === 'en' ? 'ru' : 'en';
+              localStorage.setItem('language', language);
+              this.buttons.reduce((buttonss, button, idx) => {
+                if (button.firstChild && button.lastChild && button.firstChild.nodeName === 'SPAN') {
+                  if (!button.classList.contains('arrow-left') && !button.classList.contains('arrow-right') && !button.classList.contains('arrow-up') && !button.classList.contains('arrow-down')) {
+                    const btns = button;
+                    btns.firstChild.textContent = this.keys[idx][language][cases];
+                    buttonss.push(btns);
+                  }
+                }
+                if (button.firstChild && button.lastChild && button.lastChild.nodeName === 'SPAN') {
+                  if (!button.classList.contains('arrow-left') && !button.classList.contains('arrow-right') && !button.classList.contains('arrow-up') && !button.classList.contains('arrow-down')) {
+                    const btns = button;
+                    btns.lastChild.textContent = this.keys[idx][language][cases];
+                    buttonss.push(btns);
+                  }
+                }
+                return buttonss;
+              }, []);
+            }
           }
           if (e.code === 'ControlLeft') {
             btn.span.innerHTML = '&#129313;';
@@ -745,6 +771,9 @@ class Keyboard {
           this.textArea.addEventListener('blur', () => this.textArea.focus());
           this.textArea.setRangeText(btn.span.textContent, this.textArea.selectionStart, this.textArea.selectionEnd, 'end');
         }
+      });
+      document.addEventListener('keyup', () => {
+        this.isOptionPress = false;
       });
     });
     return this.textArea;
@@ -883,8 +912,8 @@ class Keyboard {
           this.textArea.innerHTML = '';
         } else if (e.target.closest('.option-left') || e.target.closest('.option-right')) {
           altLeftLang = true;
-          e.target.classList.add('active');
-          if (altLeftLang && e.target.closest('.space')) {
+          // e.target.classList.add('active');
+          if (altLeftLang) {
             language = language === 'en' ? 'ru' : 'en';
             localStorage.setItem('language', language);
             this.buttons.reduce((buttonss, button, idx) => {
