@@ -256,7 +256,6 @@ class Keys {
           this.language = this.language === 'en' ? this.language = 'ru' : this.language = 'en';
           this.setButtonValue(id);
         } else {
-          // this.language = this.language === 'en' ? this.language = 'ru' : this.language = 'en';
           localStorage.setItem('altLeftLang', this.altLeftLang);
           this.altLeftLang = false;
           this.setButtonValue(id);
