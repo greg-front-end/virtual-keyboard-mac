@@ -739,11 +739,9 @@ class Keyboard {
             this.isCapslock = true;
           }
           if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
-            if (!this.isCapslock) {
-              this.isUpperCase = 'high';
-              this.updateKeysValues();
-              this.isShift = true;
-            }
+            this.isUpperCase = 'high';
+            this.updateKeysValues();
+            this.isShift = true;
           }
           if (e.code === 'AltLeft' || e.code === 'AltRight') {
             e.preventDefault();
@@ -774,12 +772,10 @@ class Keyboard {
           this.updateKeysValues();
         }
         if ((e.code === 'ShiftLeft' || e.code === 'ShiftRight') && this.isShift) {
-          if (!this.isCapslock) {
-            this.isUpperCase = 'low';
-            this.isCapslock = false;
-            this.isShift = false;
-            this.updateKeysValues();
-          }
+          this.isUpperCase = 'low';
+          this.isCapslock = false;
+          this.isShift = false;
+          this.updateKeysValues();
         }
       });
     });
